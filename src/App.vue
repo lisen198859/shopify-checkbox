@@ -1,12 +1,14 @@
 <template>
   <div id="cus">
     <b style="font-size: 1rem;line-height: 42px">Add Accessories（Tick to add to cart, Extra 10% OFF)</b>
-    <el-checkbox @change="handleChange(product)" v-for="product in products" v-model="product.checked" :key="product.index">
-      <img :src="product.imgUrl"/>
-      <span><span style="font-size: 16px;font-weight: bold">{{product.title}}</span><br>
-        <b>{{product.price}}</b><del>{{product.oldPrice}}</del><u @click.p.prevent="handleView(product.imgUrl)">View Larger</u>
+    <div class="list-box">
+      <el-checkbox @change="handleChange(product)" v-for="product in products" v-model="product.checked" :key="product.index">
+        <img :src="product.imgUrl"/>
+        <span class="content"><span class="title">{{product.title}}</span><br>
+<!--        <b>{{product.price}}</b><del>{{product.oldPrice}}</del><u @click.p.prevent="handleView(product.imgUrl)">View Larger</u>-->
       </span>
-    </el-checkbox>
+      </el-checkbox>
+    </div>
   </div>
 </template>
 
@@ -71,26 +73,78 @@ export default {
 }
 </script>
 <style>
-.cus-mbox{
-  width: 320px;
-}
+/*.cus-mbox{*/
+/*  width: 320px;*/
+/*}*/
 </style>
 <style lang="stylus" scoped>
+.el-checkbox__input.is-checked .el-checkbox__inner, .el-checkbox__input.is-indeterminate .el-checkbox__inner {
+  background-color: #e81f76;
+  border-color: #e81f76;
+}
+#cus .list-box{
+  display flex
+  align-items center
+  flex-wrap wrap
+  >>>.el-checkbox__inner{
+         border-radius 50px
+       }
+  >>>.el-checkbox{
+    width 33.33%
+    display flex
+    flex-direction column-reverse
+    margin-right 0
+  }
+  >>>.el-checkbox.is-checked{
+    img{
+      box-sizing border-box
+      border 1px solid #e81f76
+      border-radius 4px
+    }
+    span.title{
+      color #e81f76
+    }
+  }
+  >>>.el-checkbox__label{
+    display flex
+    flex-direction column
+    padding-left 0
+    img{
+      margin-bottom 10px
+    }
+    span.content {
+      padding-left 10px
+      padding-right 10px
+      margin-left 0
+      line-height 10px
+    }
+    span.title{
+      font-size 12px
+      line-height 16px
+      overflow : hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      margin-left 0
+    }
+  }
+}
 #cus .el-checkbox{
   padding-top 15px
   padding-bottom 15px
   display flex
   align-items center
   width 100%
-  border-top 1px solid #e4e4e4
+  //border-top 1px solid #e4e4e4
 }
 #cus>>>.el-checkbox__label{
   display flex
   align-items center
   img{
-    width 90px
-    min-width: 90px;
-    max-width: 90px;
+    width 110px
+    min-width: 110px;
+    max-width: 110px;
     flex-grow 0
   }
   span{
